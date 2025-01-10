@@ -1,4 +1,4 @@
-// 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
+﻿// 定义一个一定时间后自动成功的promise，让调用nextTick方法处，进入下一个then方法
 const nextTick = () => new Promise(resolve => setTimeout(resolve, 1000 / 50))
 // nvue动画模块实现细节抽离在外部文件
 import animationMap from './nvue.ani-map.js'
@@ -38,9 +38,7 @@ export default {
             this.display = true
             this.classes = classNames.enter
             this.$nextTick(async () => {
-				// #ifdef H5
-				await uni.$u.sleep(20)
-				// #endif
+				await uni.$u.sleep(20) // 确保渲染完成
                 // 标识动画尚未结束
                 this.$emit('enter')
                 this.transitionEnded = false
